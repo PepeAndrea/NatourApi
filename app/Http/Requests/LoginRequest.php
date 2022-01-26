@@ -28,4 +28,12 @@ class LoginRequest extends FormRequest
             'password' => 'required|string'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'email.required' => 'Inserire un indirizzo email',
+            'password.required' => 'Inserire una password',
+        ];
+    }
 }

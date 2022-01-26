@@ -19,9 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::controller(AuthController::class)->group(function () {
     Route::get('/applogin/{provider}', 'redirectToProvider');
     Route::get('/login/{provider}/callback', 'handleProviderCallback');
-    Route::post('/login/{provider}', 'getProviderUser');
-    Route::post('/login','login');
-    Route::post('/register','register'); 
+    Route::post('/login/{provider}', 'getProviderUser')->name('social_login');
+    Route::post('/login','login')->name('login');
+    Route::post('/register','register')->name('register'); 
 });
 
 

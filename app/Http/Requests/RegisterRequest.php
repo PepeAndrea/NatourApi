@@ -29,4 +29,17 @@ class RegisterRequest extends FormRequest
             'password' => ['required', 'confirmed', 'min:8']
         ];
     }
+    
+    public function messages()
+    {
+        return [
+            'name.required' => 'Inserire un nome',
+            'name.unique' => 'Il nickname inserito è stato già preso',
+            'email.required' => 'Inserire un indirizzo email',
+            'email.unique' => 'L\'email inserita è stata già presa',
+            'password.required' => 'Inserire una password',
+            'password.min' => 'La password deve contenere almeno :min caratteri',
+            'password.confirmed' => 'La password non coincide con la conferma',
+        ];
+    }
 }
