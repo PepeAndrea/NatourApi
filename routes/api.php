@@ -17,8 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 // Endpoint pubblici
 Route::controller(AuthController::class)->group(function () {
-    Route::post('/register','register');
+    Route::get('/applogin/{provider}', 'redirectToProvider');
+    Route::get('/login/{provider}/callback', 'handleProviderCallback');
+    Route::post('/login/{provider}', 'getProviderUser');
     Route::post('/login','login');
+    Route::post('/register','register'); 
 });
 
 
