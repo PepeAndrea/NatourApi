@@ -56,7 +56,7 @@ class AuthController extends Controller
     }
 
     public function logout(Request $request) {
-        $request->user()->tokens()->delete();
+        $request->user()->currentAccessToken()->delete();
 
         return $this->success(null,'Logout effettuato');
     }
@@ -108,7 +108,7 @@ class AuthController extends Controller
         }
     }
     
-    /*
+    
     public function redirectToProvider($provider) {
         $validated = $this->validateProvider($provider);
         if (!is_null($validated)) {
@@ -160,5 +160,5 @@ class AuthController extends Controller
 
         return $this->success($response,'Utente autenticato');
     }
-    */
+    
 }
