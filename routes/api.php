@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PathController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,8 +29,20 @@ Route::controller(AuthController::class)->group(function () {
 // Endpoint protetti
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
+
+    //Paths routes
+    Route::controller(PathController::class)->group(function (){
+        Route::get('/paths/filter','getFilteredPaths')->name('ricerca');
+        Route::get('/paths','getAllPaths')->name('percorsi');
+        Route::get('/path/{path}','getPath')->name('percorso');
+        Route::post('/path','addPath')->name('aggiungi_percorso');
+    });
+
+
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    $user = $request->user();
+    $user = $user->with('paths','paths.interestPoints')->get();
+    return $user;
 });
