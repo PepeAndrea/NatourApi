@@ -49,6 +49,10 @@ class PathController extends Controller
         
         $paths = $paths->get();
 
+        if(isset($filter['userCoordinate']) && isset($filter['distance'])){
+            $paths = $this->filterPathByradius($paths,$filter['userCoordinate'],$filter['distance']);
+        }
+
         return $this->success(['paths' => $paths],"Percorsi recuperati");
     }
 
@@ -92,6 +96,30 @@ class PathController extends Controller
             return $this->error("Si è verificato un errore durante il salvataggio!\nRiprovare",404,$e->getMessage());
         }
         
+    }
+
+    private function checkPathInsideRadius($coordinateSet,$userCoordinate,$distance){
+            $ky = 40000 / 360;
+            foreach ($coordinateSet as $coordinate) {
+                $kx = cos(pi() * $userCoordinate['latitude'] / 180.0) * $ky;
+                $dx = abs($userCoordinate['longitude'] - $coordinate['longitude']) * $kx;
+                $dy = abs($userCoordinate['latitude'] - $coordinate['latitude']) * $ky;
+                if(sqrt($dx * $dx + $dy * $dy) <= $distance){
+                    return true;
+                }
+            }
+            return false;
+    }
+
+    private function filterPathByRadius($paths,$userCoordinate,$distance)
+    {
+        $response = array();
+        foreach ($paths as $path) {
+            if($this->checkPathInsideRadius($path->coordinates,$userCoordinate,$distance)){
+                $response[] = $path;
+            }
+        }
+        return $response;
     }
 
 }

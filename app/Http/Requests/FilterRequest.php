@@ -29,6 +29,12 @@ class FilterRequest extends FormRequest
             'disability' => "boolean",
             'length' => "numeric|between:0.1,999.99",
             'duration' => "numeric|between:0.01,99.99",
+            'distance' => "numeric|between:0.01,9999.99",
+            'userCoordinate' => "array",
+            'userCoordinate.latitude' => "required_with:userCoordinate|numeric|between:-9999.9999999,9999.9999999",
+            'userCoordinate.longitude' => "required_with:userCoordinate|numeric|between:-9999.9999999,9999.9999999",
+
+
         ];
     }
 
