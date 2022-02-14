@@ -34,7 +34,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name.required' => 'Inserire un nickname',
-            'name.unique' => 'Il nickname è già esistente',
+            //'name.unique' => 'Il nickname è già esistente',
             'email.required' => 'Inserire un indirizzo email',
             'email.unique' => 'L\'email è già associata ad un account',
             'email.email' => 'Inserisci un\'email valida',

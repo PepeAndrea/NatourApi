@@ -61,6 +61,20 @@ class AuthController extends Controller
         return $this->success(null,'Logout effettuato');
     }
 
+    public function checkApiKey(Request $request){
+        $loggedUser = $request->user();
+        if($loggedUser){
+            $response = [
+                'user' => $loggedUser,
+                'token' => $request->bearerToken()
+            ];
+    
+            return $this->success($response,'Utente autenticato');
+        }else{
+            return $this->error('Utente non trovato', 404);
+        }
+    }
+
     public function getProviderUser(Request $request,$provider) {
         $validated = $this->validateProvider($provider);
         if (!is_null($validated)) {
