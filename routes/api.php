@@ -29,6 +29,8 @@ Route::controller(AuthController::class)->group(function () {
 // Endpoint protetti
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/checkUser',[AuthController::class,'checkApiKey'])->name('verify_token');
+
 
     //Paths routes
     Route::controller(PathController::class)->group(function (){

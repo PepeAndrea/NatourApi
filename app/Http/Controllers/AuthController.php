@@ -82,9 +82,21 @@ class AuthController extends Controller
         }
         
         try {
-            $user = Socialite::driver($provider)->userFromToken($request->provider_token);
+            if($provider == "google"){
+                $googleAuthCode = $request->input( 'provider_token' );
+                $accessTokenResponse= Socialite::driver('google')->getAccessTokenResponse($googleAuthCode);
+                $accessToken=$accessTokenResponse["access_token"];
+                $expiresIn=$accessTokenResponse["expires_in"];
+                $idToken=$accessTokenResponse["id_token"];
+                $refreshToken=isset($accessTokenResponse["refresh_token"])?$accessTokenResponse["refresh_token"]:"";
+                $tokenType=$accessTokenResponse["token_type"];
+                $user = Socialite::driver('google')->userFromToken($accessToken);
+            }else{
+                $user = Socialite::driver($provider)->userFromToken($request->provider_token);
+
+            }
         } catch (ClientException $exception) {
-            return $this->error("Credenziali fornite non valide",422);
+            return $this->error("Credenziali fornite non valide",422,$exception->getMessage());
         }
 
         $userCreated = User::firstOrCreate(
