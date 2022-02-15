@@ -45,7 +45,7 @@ class Path extends Model
     
     public function getUsernameAttribute()
     {
-        return $this->attributes['username'] = User::find(Auth::id())->name;
+        return $this->attributes['username'] = User::find($this->attributes["user_id"])->name;
     }
 
     public function getDifficultyIdAttribute($value)
