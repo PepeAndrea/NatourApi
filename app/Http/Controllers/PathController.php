@@ -17,7 +17,7 @@ class PathController extends Controller
     
     public function getAllPaths()
     {
-        return $this->success(['paths' => Path::all()],"Percorsi recuperati");
+        return $this->success(['paths' => Path::orderBy('created_at', 'desc')->get()],"Percorsi recuperati");
     }
 
     public function getPath($path)
