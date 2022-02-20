@@ -14,7 +14,8 @@ class Path extends Model
         'title',
         'description',
         'location',
-        'difficulty_id',
+        //'difficulty_id',
+        'difficulty',
         'disability',
         'length',
         'duration',
@@ -48,9 +49,12 @@ class Path extends Model
         return $this->attributes['username'] = User::find($this->attributes["user_id"])->name;
     }
 
+    /*
+
     public function getDifficultyIdAttribute($value)
     {
         return Difficulty::find($value)->symbol;
     }
 
+    */
 }

@@ -12,7 +12,8 @@ class InterestPoint extends Model
     protected $fillable = [
         'title',
         'description',
-        'category_id',
+        //'category_id',
+        'category',
         'latitude',
         'longitude',
         'path_id',
@@ -30,9 +31,11 @@ class InterestPoint extends Model
 
     //Accessors
 
+    /*
     public function getCategoryIdAttribute($value)
     {
         return Category::find($value)->name;
     }
+    */
 
 }

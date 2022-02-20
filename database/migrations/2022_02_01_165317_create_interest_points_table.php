@@ -17,7 +17,8 @@ class CreateInterestPointsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('description');
-            $table->foreignId('category_id')->constrained()->restrictOnDelete();
+            $table->string('category');
+            //$table->foreignId('category_id')->constrained()->restrictOnDelete();
             $table->decimal('latitude',11,7);
             $table->decimal('longitude',11,7);
             $table->foreignId('path_id')->constrained()->onDelete('cascade');

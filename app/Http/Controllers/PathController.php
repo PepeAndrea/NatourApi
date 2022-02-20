@@ -65,7 +65,8 @@ class PathController extends Controller
                 'title' => $data['title'],
                 'description' => $data['description'],
                 'location' => $data['location'],
-                'difficulty_id' => $data['difficulty_id'],
+                //'difficulty_id' => $data['difficulty_id'],
+                'difficulty' => $data['difficulty'],
                 'disability' => $data['disability'],
                 'length' => $data['length'],
                 'duration' => $data['duration'],
@@ -84,7 +85,7 @@ class PathController extends Controller
                 InterestPoint::create([
                     'title' => $interest_point['title'],
                     'description' => $interest_point['description'],
-                    'category_id' => $interest_point['category_id'],
+                    'category' => $interest_point['category'],
                     'latitude' => $interest_point['latitude'],
                     'longitude' => $interest_point['longitude'],
                     'path_id' => $newPath->id

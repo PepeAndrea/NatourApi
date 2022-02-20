@@ -18,7 +18,8 @@ class CreatePathsTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('location');
-            $table->foreignId('difficulty_id')->constrained()->restrictOnDelete();
+            $table->string('difficulty');
+            //$table->foreignId('difficulty_id')->constrained()->restrictOnDelete();
             $table->boolean('disability');
             $table->float('length',8,2,true);
             $table->float('duration',4,2,true);
