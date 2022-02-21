@@ -32,7 +32,7 @@ class PathRequest extends FormRequest
             //'difficulty_id' => "required|integer|exists:difficulties,id",
             'difficulty' => "required|string",
             'disability' => "required|boolean",
-            'length' => "required|numeric|between:0.1,999.99",
+            'length' => "required|numeric|between:0,999.99",
             'duration' => "required|string",
             //Coordinates data
             'coordinates' => 'required|array',
