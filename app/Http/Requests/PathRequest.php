@@ -33,7 +33,7 @@ class PathRequest extends FormRequest
             'difficulty' => "required|string",
             'disability' => "required|boolean",
             'length' => "required|numeric|between:0.1,999.99",
-            'duration' => "required|numeric|between:0.01,99.99",
+            'duration' => "required|string",
             //Coordinates data
             'coordinates' => 'required|array',
             'coordinates.*.latitude' => 'required|numeric|between:-9999.9999999,9999.9999999',
