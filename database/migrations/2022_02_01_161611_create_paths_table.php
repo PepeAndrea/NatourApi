@@ -22,7 +22,7 @@ class CreatePathsTable extends Migration
             //$table->foreignId('difficulty_id')->constrained()->restrictOnDelete();
             $table->boolean('disability');
             $table->float('length',8,2,true);
-            $table->string('duration');
+            $table->bigInteger('duration',false,true);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
