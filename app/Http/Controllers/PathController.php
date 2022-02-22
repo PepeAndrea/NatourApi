@@ -81,20 +81,24 @@ class PathController extends Controller
                 ]);
             }
     
-            foreach ($data['interest_points'] as $interest_point) {
-                InterestPoint::create([
-                    'title' => $interest_point['title'],
-                    'description' => $interest_point['description'],
-                    'category' => $interest_point['category'],
-                    'latitude' => $interest_point['latitude'],
-                    'longitude' => $interest_point['longitude'],
-                    'path_id' => $newPath->id
-                ]);
+            if(isset($data['interest_points'])){
+
+                foreach ($data['interest_points'] as $interest_point) {
+                    InterestPoint::create([
+                        'title' => $interest_point['title'],
+                        'description' => $interest_point['description'],
+                        'category' => $interest_point['category'],
+                        'latitude' => $interest_point['latitude'],
+                        'longitude' => $interest_point['longitude'],
+                        'path_id' => $newPath->id
+                    ]);
+                }
+
             }
-    
+
             return $this->success(Path::with(['coordinates','interestPoints'])->findOrFail($newPath->id),"Percorso inserito con successo!");
         }catch (Exception $e) {
-            return $this->error("Si è verificato un errore durante il salvataggio!\nRiprovare",404,$e->getMessage());
+            return $this->error("Si è verificato un errore durante il salvataggio!\nRiprovare",422,$e->getMessage());
         }
         
     }
