@@ -44,7 +44,7 @@ class PathController extends Controller
             $paths = $paths->where('disability',$filter['disability']);
         }
         if(isset($filter['difficulty'])){
-            $paths = $paths->whereIn('difficulty',$filter['difficulty']);
+            $paths = $paths->whereIn('difficulty',$filter['difficulty']*3600000);
         }
         
         $paths = $paths->get();
