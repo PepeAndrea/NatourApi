@@ -38,13 +38,13 @@ class PathController extends Controller
             $paths = $paths->where('length','<=',$filter['length']);
         }
         if(isset($filter['duration'])){
-            $paths = $paths->where('duration','<=',$filter['duration']);
+            $paths = $paths->where('duration','<=',$filter['duration']*3600000);
         }
         if(isset($filter['disability'])){
             $paths = $paths->where('disability',$filter['disability']);
         }
         if(isset($filter['difficulty'])){
-            $paths = $paths->whereIn('difficulty',$filter['difficulty']*3600000);
+            $paths = $paths->whereIn('difficulty',$filter['difficulty']);
         }
         
         $paths = $paths->get();
