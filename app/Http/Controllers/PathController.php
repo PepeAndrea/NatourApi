@@ -47,7 +47,7 @@ class PathController extends Controller
             $paths = $paths->whereIn('difficulty',$filter['difficulty']);
         }
         
-        $paths = $paths->get();
+        $paths = $paths->orderBy('created_at', 'desc')->get();
 
         if(isset($filter['userCoordinate']) && isset($filter['distance'])){
             $paths = $this->filterPathByradius($paths,$filter['userCoordinate'],$filter['distance']);
