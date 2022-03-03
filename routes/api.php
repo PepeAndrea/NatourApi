@@ -42,8 +42,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     });
 
 
-    
-
+    //Export routes
+    Route::controller(ExportController::class)->group(function (){
+        Route::get('/export/pdf/{path}','exportPdf')->name('pdf_export');
+        Route::get('/export/gpx/{path}','exportGpx')->name('gpx_export');
+    });
 
 });
 
@@ -51,11 +54,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     $user = $request->user();
     $user = $user->with('paths','paths.interestPoints')->get();
     return $user;
-});
-
-
-//Export routes
-Route::controller(ExportController::class)->group(function (){
-    Route::get('/export/pdf/{path}','exportPdf')->name('pdf_export');
-    Route::get('/export/gpx/{path}','exportGpx')->name('gpx_export');
 });
