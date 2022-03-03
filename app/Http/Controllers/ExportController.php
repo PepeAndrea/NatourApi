@@ -32,7 +32,7 @@ class ExportController extends Controller
         $fileName = str_replace(" ","_",$path->title).".gpx";
 
         $headers = array(
-            "Content-type"        => "text/xml",
+            "Content-type"        => "application/gpx+xml",
             "Content-Disposition" => "attachment; filename=$fileName",
             "Pragma"              => "no-cache",
             "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
