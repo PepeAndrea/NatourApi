@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\PathController;
 use Illuminate\Http\Request;
@@ -31,6 +32,8 @@ Route::controller(AuthController::class)->group(function () {
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/checkUser',[AuthController::class,'checkApiKey'])->name('verify_token');
+
+    Route::post('/sendemail',[EmailController::class,'sendEmail'])->name('send_email');
 
 
     //Paths routes
