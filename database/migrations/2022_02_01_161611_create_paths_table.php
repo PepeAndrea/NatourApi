@@ -23,6 +23,7 @@ class CreatePathsTable extends Migration
             $table->boolean('disability');
             $table->float('length',8,2,true);
             $table->bigInteger('duration',false,true);
+            $table->boolean('isReported')->default(0);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

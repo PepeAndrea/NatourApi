@@ -39,6 +39,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::get('/paths','getAllPaths')->name('percorsi');
         Route::get('/path/{path}','getPath')->name('percorso');
         Route::post('/path','addPath')->name('aggiungi_percorso');
+        Route::post('/report/{path}','reportPath')->name('segnala_percorso');
+
     });
 
 

@@ -19,6 +19,7 @@ class Path extends Model
         'disability',
         'length',
         'duration',
+        'isReported',
         'user_id'
     ];
 

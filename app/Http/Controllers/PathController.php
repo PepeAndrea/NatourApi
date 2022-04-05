@@ -127,4 +127,14 @@ class PathController extends Controller
         return $response;
     }
 
+    public function reportPath($path)
+    {
+        try{
+            $toReport = Path::findOrFail($path);
+            $toReport->update(['isReported' => true]);
+            return $this->success(['Path id segnalato' => $path],"Percorso Segnalato");
+        }catch(Exception $e){
+            return $this->error("Percorso non trovato",404,$e->getMessage());
+        }
+    }
 }
