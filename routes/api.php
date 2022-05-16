@@ -27,6 +27,12 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/register','register')->name('register'); 
 });
 
+//Export routes
+Route::controller(ExportController::class)->group(function (){
+    Route::get('/export/pdf/{path}','exportPdf')->name('pdf_export');
+    Route::get('/export/gpx/{path}','exportGpx')->name('gpx_export');
+});
+
 
 // Endpoint protetti
 Route::group(['middleware' => ['auth:sanctum']], function () {
@@ -45,14 +51,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::post('/report/{path}','reportPath')->name('segnala_percorso');
 
     });
-
-
-    //Export routes
-    Route::controller(ExportController::class)->group(function (){
-        Route::get('/export/pdf/{path}','exportPdf')->name('pdf_export');
-        Route::get('/export/gpx/{path}','exportGpx')->name('gpx_export');
-    });
-
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
